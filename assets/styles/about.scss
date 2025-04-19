@@ -1,0 +1,60 @@
+@use 'variables' as *;
+
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $space-lg;
+  padding: $space-lg;
+  min-height: 70vh;
+  background-color: $almost-white;
+
+  .about-course,
+  .about-min {
+    flex: 1 1 48%;
+    min-width: 280px;
+    font-family: $font-body;
+    color: $almost-black;
+
+    h2 {
+      font-family: $font-header;
+      font-size: 1.25rem;
+      color: $primary-blue;
+      margin-bottom: $space-xs;
+    }
+
+    p {
+      font-size: $body-font-size;
+      line-height: $line-height;
+      color: $dark-grey;
+      margin-bottom: $space-sm;
+    }
+
+    a {
+      color: $hover-blue;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: $radius-md;
+      border: 1px solid $a-bit-more-grey;
+      background-color: $white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-top: $space-sm;
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+  }
+}

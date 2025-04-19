@@ -1,0 +1,20 @@
+@use 'variables' as *;
+
+.main-header {
+  background-image: url('../images/databas.jpg');
+  background-size: cover;
+  background-position: center;
+  color: $white;
+  text-align: center;
+  padding: $space-lg;
+  border-bottom: $radius-sm solid $primary-blue;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .site-title {
+    font-size: $space-xl;
+    font-family: $font-header;
+    text-shadow: 1px 1px 3px $almost-black;
+    letter-spacing: 0.1em;
+    color: $white;
+  }
+}

@@ -1,0 +1,39 @@
+// style/variables/_variables.scss
+
+// Grayscale base colors
+$light-grey: #e0e0e0;
+$dark-grey: #444;
+$almost-black: #222;
+$black: #000;
+$white: #fff;
+$almost-white: #f8f8f8;
+$a-bit-more-grey: #d3d3d3;
+
+// Tech-themed cool tones (primary)
+$primary-blue: #0a84ff;
+$secondary-blue: #5ac8fa;
+$hover-blue: #66d9ef;
+$nav-bg: rgba(255, 255, 255, 0.9);
+
+// Accent colors
+$green: #30d158;
+$red: #ff3b30;
+$yellow: #ffd60a;
+
+// Typography and layout
+$font-body: 'Merriweather', sans-serif;
+$font-header: 'Source Sans Pro', sans-serif;
+
+$line-height: 1.5rem;
+$body-font-size: 1rem;
+// Spacing units
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2rem;
+$space-xl: 3rem;
+
+// Border radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;

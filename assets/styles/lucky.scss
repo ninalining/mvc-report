@@ -1,0 +1,57 @@
+
+
+@use 'variables' as *;
+
+.lucky-page {
+  padding: $space-lg;
+  background-color: $almost-white;
+  text-align: center;
+}
+
+.lucky-title {
+  color: $red;
+  font-family: 'Comic Sans MS', cursive;
+  text-shadow: 2px 2px $yellow;
+  font-size: 2rem;
+  margin-bottom: $space-md;
+}
+
+.lucky-number {
+  font-size: 2.5rem;
+  color: $primary-blue;
+  margin: $space-sm 0;
+}
+
+.lucky-spin {
+  width: 150px;
+  height: 150px;
+  animation: spin 4s linear infinite;
+  display: block;
+  margin: $space-md auto;
+  border-radius: 50%;
+  box-shadow: 0 0 10px $hover-blue;
+}
+
+.lucky-banner {
+  width: 100%;
+  max-width: 600px;
+  border: 4px dashed $secondary-blue;
+  border-radius: $radius-md;
+  margin: $space-lg auto;
+  padding: $space-sm;
+}
+
+.lucky-message {
+  font-style: italic;
+  color: $dark-grey;
+  font-size: 1.2rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

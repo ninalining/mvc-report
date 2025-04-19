@@ -1,0 +1,29 @@
+@use 'variables' as *;
+
+.main-nav {
+    background-color: $nav-bg;
+    font-family: $font-header;
+    padding: $space-md;
+    border-bottom: 1px solid $a-bit-more-grey;
+
+    ul {
+      display: flex;
+      gap: $space-md;
+      list-style: none;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+  
+    a {
+      text-decoration: none;
+      color: $almost-black;
+      font-weight: 500;
+      font-size: $body-font-size;
+
+      &:hover {
+        text-decoration: underline;
+        color: $hover-blue;
+      }
+    }
+}

@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}API Index{% endblock %}
+
+{% block body %}
+    <h1>API Endpoints</h1>
+    <ul>
+        <li>
+            <a href="{{ path('api_quote') }}">/api/quote</a> - Return a random quote with date and timestamp.
+        </li>
+    </ul>
+{% endblock %}

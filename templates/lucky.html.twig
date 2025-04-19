@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky{% endblock %}
+
+{% block body %}
+    <h1 class="lucky-title">Lucky Zone </h1>
+    <p class="lucky-number">Ditt lyckotal är: <strong>{{ number }}</strong></p>
+    <img src="{{ asset('build/images/spin.jpg') }}" alt="Lucky image" class="lucky-spin">
+    <img src="{{ asset('build/images/databas.jpg') }}" alt="Crazy pic" class="lucky-banner">
+    <p class="lucky-message">Varje omladdning ger dig ett nytt nummer... och nya vibbar!</p>
+{% endblock %}

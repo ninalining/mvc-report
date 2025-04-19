@@ -1,0 +1,22 @@
+@use 'variables' as *;
+
+.home-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-lg;
+  margin-top: $space-lg;
+  padding: $space-sm;
+
+  .home-image img {
+    border-radius: $radius-lg;
+    max-width: 250px;
+    box-shadow: 0 0 $space-md $a-bit-more-grey;
+  }
+
+  .home-text {
+    max-width: 600px;
+    font-size: $body-font-size;
+    color: $almost-black;
+  }
+}

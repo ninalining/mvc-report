@@ -1,0 +1,54 @@
+body {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+h1 {
+    border-bottom: 4px double #ccc;
+}
+
+.about-columns {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.about-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.lucky-title {
+    color: #d6249f;
+    font-family: 'Comic Sans MS', cursive;
+    text-shadow: 2px 2px #ffb6c1;
+}
+
+.lucky-number {
+    font-size: 1.5rem;
+    color: #4b0082;
+}
+
+.lucky-spin {
+    width: 150px;
+    animation: spin 4s linear infinite;
+    display: block;
+    margin: 1rem auto;
+}
+
+.lucky-banner {
+    width: 100%;
+    border: 4px dashed hotpink;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.lucky-message {
+    text-align: center;
+    font-style: italic;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

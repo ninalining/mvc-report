@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+<div class="about-container">
+    <div class="about-course">
+        <h2>About the MVC course</h2>
+        <p>This course is about understanding the MVC design pattern and building web applications using Symfony.</p>
+        <p>Visit the course repo: <a href="https://github.com/dbwebb-se/mvc">github.com/dbwebb-se/mvc</a></p>
+    </div>
+    <div class="about-min">
+        <h2>My GitHub</h2>
+        <p>You can find my project on GitHub here:</p>
+        <a href="https://github.com/ninalining/mvc-report">github.com/ninalining/mvc-report</a>
+        <img src="{{ asset('img/databas.jpg') }}" alt="databas">
+    </div>
+</div>
+{% endblock %}

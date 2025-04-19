@@ -1,0 +1,48 @@
+// style/typography.scss
+@use 'variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: $font-body;
+  line-height: $line-height;
+}
+
+main {
+  flex: 1;
+}
+
+h1 {
+  font-size: 2rem;
+  color: $primary-blue;
+  font-family: $font-header;
+  margin-bottom: $space-sm;
+}
+
+h2 {
+  font-size: 1.6rem;
+  color: $dark-grey;
+  font-family: $font-header;
+  margin-bottom: $space-sm;
+}
+
+p {
+  font-size: $body-font-size;
+  color: $almost-black;
+  margin-bottom: $space-sm;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Symfony Site{% endblock %}</title>
+    <link rel="icon" href="{{ asset('img/IMG_4451.JPG') }}">
+    {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+    <header class="site-header main-header" style="background-image: url({{ asset('img/databas.jpg') }})">
+        <span class="site-title">My Symfony Site</span>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="{{ path('home') }}">Home</a></li>
+            <li><a href="{{ path('about') }}">About</a></li>
+            <li><a href="{{ path('report') }}">Report</a></li>
+            <li><a href="{{ path('lucky') }}">Lucky</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Nina Li</p>
+    </footer>
+
+    {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
+</html>
