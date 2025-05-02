@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dra flera kort{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Dra flera kort från kortleken</h1>
+
+    {% if cards is not empty %}
+        <p>Du drog följande kort:</p>
+        <div class="deck-cards">
+            {% for card in cards %}
+                <span class="card">{{ card }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Det finns inga fler kort att dra!</p>
+    {% endif %}
+
+    <p>Kvarvarande kort i leken: {{ remaining }}</p>
+
+    <a href="{{ path('card_draw_number', {number: 5}) }}" class="btn">Dra 5 nya kort</a>
+    <a href="{{ path('card_shuffle') }}" class="btn">Återställ kortleken</a>
+    <a href="{{ path('card_index') }}" class="btn">Tillbaka till kortlekensidan</a>
+</div>
+{% endblock %}

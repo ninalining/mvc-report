@@ -1,0 +1,55 @@
+@use 'variables' as *;
+
+.card-container {
+  padding: $space-lg;
+  background-color: $almost-white;
+  border-radius: $radius-md;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-family: $font-header;
+    font-size: 1.5rem;
+    color: $primary-blue;
+    margin-bottom: $space-md;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: $space-md;
+    padding: $space-sm $space-md;
+    background-color: $primary-blue;
+    color: $white;
+    text-decoration: none;
+    border-radius: $radius-sm;
+    font-size: $body-font-size;
+    font-weight: bold;
+    text-align: center;
+
+    &:hover {
+      background-color: $hover-blue;
+    }
+  }
+}
+
+.deck-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+
+  .card {
+    display: inline-block;
+    padding: $space-sm;
+    border: 1px solid $a-bit-more-grey;
+    border-radius: $radius-sm;
+    background-color: $white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    font-family: $font-body;
+    text-align: center;
+    color: $almost-black;
+
+    &.red {
+      color: $red !important; // 确保红色样式优先级
+    }
+  }
+}

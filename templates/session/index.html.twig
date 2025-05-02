@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Session innehåll{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Sessionens innehåll</h1>
+
+    {{ include('flash.html.twig') }}
+
+    {% if sessionData %}
+        <ul>
+        {% for key, value in sessionData %}
+            <li><strong>{{ key }}:</strong> {{ value|json_encode(constant('JSON_PRETTY_PRINT')) }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sessionen är tom.</p>
+    {% endif %}
+
+    <a href="{{ path('session_delete') }}" class="btn">Radera Session</a>
+</div>
+{% endblock %}

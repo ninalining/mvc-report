@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Visa hela kortleken{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Hela korten (sorterad)</h1>
+    <div class="deck-cards">
+        {% for suit, suitCards in cards %}
+            <div class="suit-row">
+                <strong>{{ suit }}</strong>: 
+                {% for card in suitCards %}
+                    <span class="card">{{ card }}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{{ path('card_index') }}" class="btn">Tillbaka till kortlekssidan</a>
+</div>
+{% endblock %}

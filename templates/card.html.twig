@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortlekens Landningssida{% endblock %}
+
+{% block body %}
+<div class="card-container">
+    <h1>Välkommen till Kortlekens Landningssida</h1>
+    <p>Välkommen till kortlekssidan! Här kan du:</p>
+    <ul>
+        <li><a href="{{ path('card_deck') }}" class="btn">Visa hela kortleken</a></li>
+        <li><a href="{{ path('card_shuffle') }}" class="btn">Blanda kortleken</a></li>
+        <li><a href="{{ path('card_draw') }}" class="btn">Dra ett kort</a></li>
+        <li><a href="{{ path('card_draw_number', {number: 5}) }}" class="btn">Dra 5 kort</a></li>
+    </ul>
+
+    <h2>Om klasserna</h2>
+    <p>Det finns tre huvudklasser:</p>
+    <ul>
+        <li><strong>Card:</strong> Representerar ett enskilt kort (värde + färg).</li>
+        <li><strong>CardHand:</strong> Representerar en samling kort (en spelares hand).</li>
+        <li><strong>DeckOfCards:</strong> Representerar en hel kortlek med kort, kan blandas och dras ifrån.</li>
+    </ul>
+
+    <h2>UML Klassdiagram</h2>
+    <img src="{{ asset('img/uml-class-diagram.png') }}" alt="UML Klassdiagram">
+</div>
+{% endblock %}

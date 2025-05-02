@@ -5,8 +5,10 @@
 {% block body %}
     <h1>API Endpoints</h1>
     <ul>
-        <li>
-            <a href="{{ path('api_quote') }}">/api/quote</a> - Return a random quote with date and timestamp.
-        </li>
+        <li><a href="{{ path('api_quote') }}">/api/quote</a> - Returnerar ett slumpmässigt citat med datum och tidsstämpel.</li>
+        <li><a href="{{ path('api_deck') }}">/api/deck</a> - Hämtar hela kortleken (sorterad efter färg och värde).</li>
+        <li>/api/deck/shuffle - Blandar kortleken och returnerar den (POST endast).</li>
+        <li>/api/deck/draw - Drar ett kort från kortleken och visar det (POST endast).</li>
+        <li>/api/deck/draw/:number - Drar ett angivet antal kort från kortleken och visar dem (POST endast).</li>
     </ul>
 {% endblock %}
