@@ -3,8 +3,8 @@
 .card-container {
   display: flex;
   flex-direction: column;
-  align-items: center; // 水平居中
-  justify-content: center; // 垂直居中
+  align-items: center;
+  justify-content: center;
   padding: $space-lg;
   background-color: $almost-white;
   border-radius: $radius-md;
@@ -13,8 +13,8 @@
   .card-info,
   .card-uml {
     text-align: center;
-    width: 100%; // 确保内容宽度一致
-    max-width: 800px; // 限制最大宽度
+    width: 100%;
+    max-width: 800px;
   }
 
   .card-main {
@@ -33,7 +33,7 @@
 
     .card-actions {
       display: flex;
-      justify-content: center; // 水平居中
+      justify-content: center;
       gap: $space-md;
       list-style: none;
       padding: 0;
@@ -52,7 +52,7 @@
         transition: background-color 0.3s, transform 0.2s;
 
         &:hover {
-          background-color: $hover-blue;
+          background-color: $accent-orange;
           transform: scale(1.05);
         }
       }
@@ -112,7 +112,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: $space-sm;
-    justify-content: center; // 水平居中
+    justify-content: center;
     margin: $space-md 0;
 
     .card {
@@ -147,7 +147,8 @@
     transition: background-color 0.3s, transform 0.2s;
 
     &:hover {
-      background-color: $hover-blue;
+      background-color: $accent-orange;
+      color: $white;
       transform: scale(1.05);
     }
   }
@@ -157,5 +158,24 @@
     font-size: $body-font-size;
     color: $dark-grey;
     margin: $space-md 0;
+  }
+}
+
+.card-container .btn {
+  display: inline-block;
+  padding: $space-sm $space-md;
+  background-color: $primary-blue;
+  color: $white;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  font-size: $body-font-size;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: $accent-orange;
+    color: $white;
+    transform: scale(1.05);
   }
 }

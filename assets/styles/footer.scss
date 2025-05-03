@@ -1,13 +1,12 @@
 @use 'variables' as *;
 
 footer {
-  background-color: $almost-white;
-  color: $dark-grey;
+  background-color: $secondary-blue;
+  color: $white;
   font-family: $font-body;
-  font-size: 0.9rem;
+  font-size: $body-font-size;
   text-align: center;
   padding: $space-lg;
-  //margin-top: 2rem;
   border-top: 1px solid $light-grey;
   position: relative;
   bottom: 0;

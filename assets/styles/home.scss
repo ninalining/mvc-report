@@ -3,7 +3,8 @@
 .home-page {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
   gap: $space-lg;
   margin-top: $space-lg;
   padding: $space-sm;
