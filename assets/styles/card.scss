@@ -1,16 +1,136 @@
 @use 'variables' as *;
 
 .card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // 水平居中
+  justify-content: center; // 垂直居中
   padding: $space-lg;
   background-color: $almost-white;
   border-radius: $radius-md;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-  h1 {
-    font-family: $font-header;
-    font-size: 1.5rem;
-    color: $primary-blue;
-    margin-bottom: $space-md;
+  .card-main,
+  .card-info,
+  .card-uml {
+    text-align: center;
+    width: 100%; // 确保内容宽度一致
+    max-width: 800px; // 限制最大宽度
+  }
+
+  .card-main {
+    text-align: center;
+    background-color: $almost-white;
+    padding: $space-lg;
+    border-radius: $radius-md;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    h1 {
+      font-family: $font-header;
+      font-size: 1.5rem;
+      color: $primary-blue;
+      margin-bottom: $space-md;
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: center; // 水平居中
+      gap: $space-md;
+      list-style: none;
+      padding: 0;
+      margin-top: $space-md;
+
+      .btn {
+        display: inline-block;
+        padding: $space-sm $space-md;
+        background-color: $primary-blue;
+        color: $white;
+        text-decoration: none;
+        border-radius: $radius-sm;
+        font-size: $body-font-size;
+        font-weight: bold;
+        text-align: center;
+        transition: background-color 0.3s, transform 0.2s;
+
+        &:hover {
+          background-color: $hover-blue;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  .card-info {
+    background-color: $secondary-blue;
+    color: $white;
+    padding: $space-lg;
+    border-radius: $radius-md;
+    margin-top: $space-lg;
+
+    h2 {
+      font-family: $font-header;
+      font-size: 1.3rem;
+      margin-bottom: $space-md;
+    }
+
+    p, ul {
+      font-size: $body-font-size;
+      line-height: $line-height;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: $space-sm;
+      }
+    }
+  }
+
+  .card-uml {
+    background-color: $almost-white;
+    padding: $space-lg;
+    border-radius: $radius-md;
+    margin-top: $space-lg;
+    text-align: center;
+
+    h2 {
+      font-family: $font-header;
+      font-size: 1.3rem;
+      margin-bottom: $space-md;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: $radius-md;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .deck-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    justify-content: center; // 水平居中
+    margin: $space-md 0;
+
+    .card {
+      display: inline-block;
+      padding: $space-sm;
+      border: 1px solid $a-bit-more-grey;
+      border-radius: $radius-sm;
+      background-color: $white;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      font-size: 1.2rem;
+      font-family: $font-body;
+      text-align: center;
+      color: $almost-black;
+
+      &.red {
+        color: $red !important;
+      }
+    }
   }
 
   .btn {
@@ -24,32 +144,18 @@
     font-size: $body-font-size;
     font-weight: bold;
     text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
 
     &:hover {
       background-color: $hover-blue;
+      transform: scale(1.05);
     }
   }
-}
 
-.deck-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $space-sm;
-
-  .card {
-    display: inline-block;
-    padding: $space-sm;
-    border: 1px solid $a-bit-more-grey;
-    border-radius: $radius-sm;
-    background-color: $white;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    font-size: 1.2rem;
-    font-family: $font-body;
+  .card-message {
     text-align: center;
-    color: $almost-black;
-
-    &.red {
-      color: $red !important; // 确保红色样式优先级
-    }
+    font-size: $body-font-size;
+    color: $dark-grey;
+    margin: $space-md 0;
   }
 }

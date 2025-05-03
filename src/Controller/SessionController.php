@@ -12,11 +12,11 @@ class SessionController extends AbstractController
     #[Route('/session', name: 'session_index')]
     public function index(SessionInterface $session): Response
     {
-        $sessionData = $session->all(); // 获取所有会话数据
-        dump($session->all()); // 调试会话数据
+        $sessionData = $session->all();
+        dump($session->all());
 
         return $this->render('session/index.html.twig', [
-            'sessionData' => $sessionData, // 传递到模板
+            'sessionData' => $sessionData,
         ]);
     }
 

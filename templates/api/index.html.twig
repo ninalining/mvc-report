@@ -3,6 +3,7 @@
 {% block title %}API Index{% endblock %}
 
 {% block body %}
+<div class="container api-container">
     <h1>API Endpoints</h1>
     <ul>
         <li><a href="{{ path('api_quote') }}">/api/quote</a> - Returnerar ett slumpmässigt citat med datum och tidsstämpel.</li>
@@ -11,4 +12,5 @@
         <li>/api/deck/draw - Drar ett kort från kortleken och visar det (POST endast).</li>
         <li>/api/deck/draw/:number - Drar ett angivet antal kort från kortleken och visar dem (POST endast).</li>
     </ul>
+</div>
 {% endblock %}

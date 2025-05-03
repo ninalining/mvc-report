@@ -3,19 +3,21 @@
 {% block title %}Dra ett kort{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="card-container">
     <h1>Dra ett kort från kortleken</h1>
 
     {% if card %}
-        <p>Du drog: <span class="card">{{ card }}</span></p>
+        <p class="card-message">Du drog: <span class="card">{{ card }}</span></p>
     {% else %}
-        <p>Det finns inga fler kort att dra!</p>
+        <p class="card-message">Det finns inga fler kort att dra!</p>
     {% endif %}
 
-    <p>Kvarvarande kort i leken: {{ remaining }}</p>
+    <p class="card-message">Kvarvarande kort i leken: {{ remaining }}</p>
 
-    <a href="{{ path('card_draw') }}" class="btn">Dra ett till kort</a>
-    <a href="{{ path('card_shuffle') }}" class="btn">Återställ kortleken</a>
-    <a href="{{ path('card_index') }}" class="btn">Tillbaka till landningssidan</a>
+    <div class="card-actions">
+        <a href="{{ path('card_draw') }}" class="btn">Dra ett till kort</a>
+        <a href="{{ path('card_shuffle') }}" class="btn">Återställ kortleken</a>
+        <a href="{{ path('card_index') }}" class="btn">Tillbaka till landningssidan</a>
+    </div>
 </div>
 {% endblock %}

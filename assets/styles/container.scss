@@ -1,6 +1,8 @@
 @use 'variables' as *;
 
 .container {
+  background-color: $almost-white;
+  width: 100%;
   max-width: 75rem;
   margin-left: auto;
   margin-right: auto;

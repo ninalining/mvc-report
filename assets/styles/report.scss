@@ -2,38 +2,55 @@
 
 .report-layout {
   display: flex;
-  gap: $space-xl;
+  gap: $space-lg;
+  padding: $space-lg;
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 }
 
-// Removed .report-title and .report-main blocks as they have been restructured.
+.report-title {
+  text-align: center;
+  margin-bottom: $space-md;
+  font-family: $font-header;
+  font-size: 1.75rem;
+}
+
+.report-main {
+  display: flex;
+  gap: $space-xl;
+  align-items: flex-start;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
 
 .report-nav {
   flex: 0 0 220px;
-  padding: $space-lg $space-md;
+  padding: $space-md;
   background-color: $almost-white;
+  border-right: 1px solid $light-grey;
 
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
-  }
 
-  li {
-    margin-bottom: $space-sm;
+    li {
+      margin-bottom: $space-sm;
 
-    a {
-      color: $primary-blue;
-      text-decoration: none;
-      font-size: 1.1rem;
-      font-weight: bold;
+      a {
+        color: $primary-blue;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: bold;
 
-      &:hover {
-        color: $hover-blue;
-        text-decoration: underline;
+        &:hover {
+          color: $hover-blue;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -41,7 +58,7 @@
 
 .report-sections {
   flex: 1;
-  padding: $space-lg $space-md;
+  padding: $space-md;
 
   .report-title {
     text-align: center;

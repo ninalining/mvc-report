@@ -9,5 +9,8 @@
 @use 'report';
 @use 'lucky';
 @use 'card';
+@use 'session';
+@use 'flash';
+@use 'api';
 
 @import url('https://fonts.googleapis.com/css?family=Merriweather');

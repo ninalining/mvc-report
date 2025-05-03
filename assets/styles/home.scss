@@ -19,4 +19,17 @@
     font-size: $body-font-size;
     color: $almost-black;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    .home-image img {
+      max-width: 100%;
+    }
+
+    .home-text {
+      text-align: center;
+    }
+  }
 }

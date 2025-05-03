@@ -51,10 +51,14 @@
       display: block;
     }
   }
-}
 
-@media (max-width: 768px) {
-  .about-container {
+  @media (max-width: 768px) {
     flex-direction: column;
+
+    .about-course,
+    .about-min {
+      flex: 1 1 100%;
+      text-align: center;
+    }
   }
 }

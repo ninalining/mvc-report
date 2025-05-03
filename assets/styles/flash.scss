@@ -1,0 +1,17 @@
+@use 'variables' as *;
+
+.flash-notice {
+  background-color: $secondary-blue;
+  color: $white;
+  padding: $space-sm;
+  border-radius: $radius-sm;
+  margin-bottom: $space-md;
+}
+
+.flash-warning {
+  background-color: $yellow;
+  color: $almost-black;
+  padding: $space-sm;
+  border-radius: $radius-sm;
+  margin-bottom: $space-md;
+}

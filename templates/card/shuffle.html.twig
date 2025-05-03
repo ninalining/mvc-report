@@ -3,16 +3,18 @@
 {% block title %}Blandad kortlek{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="card-container">
     <h1>Kortleken efter blandning</h1>
     <div class="deck-cards">
         {% for card in cards %}
             <span class="card">{{ card }}</span>
         {% endfor %}
     </div>
-    <a href="{{ path('card_shuffle') }}" class="btn">Blanda kortleken igen</a>
-    <a href="{{ path('card_draw') }}" class="btn">Dra ett kort</a>
-    <a href="{{ path('card_draw_number', {number: 5}) }}" class="btn">Dra 5 kort</a>
-    <a href="{{ path('card_index') }}" class="btn">Tillbaka till landningssidan</a>
+    <div class="card-actions">
+        <a href="{{ path('card_shuffle') }}" class="btn">Blanda kortleken igen</a>
+        <a href="{{ path('card_draw') }}" class="btn">Dra ett kort</a>
+        <a href="{{ path('card_draw_number', {number: 5}) }}" class="btn">Dra 5 kort</a>
+        <a href="{{ path('card_index') }}" class="btn">Tillbaka till landningssidan</a>
+    </div>
 </div>
 {% endblock %}

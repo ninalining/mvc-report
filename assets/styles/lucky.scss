@@ -1,11 +1,10 @@
-
-
 @use 'variables' as *;
 
 .lucky-page {
   padding: $space-lg;
   background-color: $almost-white;
   text-align: center;
+  margin-top: $space-lg;
 }
 
 .lucky-title {
