@@ -54,11 +54,11 @@ class DeckOfCards
         usort($this->deck, function (Card $a, Card $b) {
             $suitOrder = array_flip(self::$suits);
             $valueOrder = array_flip(self::$values);
-    
+
             if ($suitOrder[$a->getSuit()] === $suitOrder[$b->getSuit()]) {
                 return $valueOrder[$a->getValue()] <=> $valueOrder[$b->getValue()];
             }
-    
+
             return $suitOrder[$a->getSuit()] <=> $suitOrder[$b->getSuit()];
         });
     }

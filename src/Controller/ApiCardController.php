@@ -18,7 +18,7 @@ class ApiCardController extends AbstractController
         $session->set('deck', $deck);
 
         return $this->json([
-            'deck' => array_map(fn($card) => (string) $card, $deck->getCards()),
+            'deck' => array_map(fn ($card) => (string) $card, $deck->getCards()),
         ]);
     }
 
@@ -31,7 +31,7 @@ class ApiCardController extends AbstractController
 
         return $this->json([
             'message' => 'Deck shuffled successfully!',
-            'deck' => array_map(fn($card) => (string) $card, $deck->getCards()),
+            'deck' => array_map(fn ($card) => (string) $card, $deck->getCards()),
         ]);
     }
 
@@ -56,7 +56,7 @@ class ApiCardController extends AbstractController
         $session->set('deck', $deck);
 
         return $this->json([
-            'cards' => array_map(fn($card) => (string) $card, $cards),
+            'cards' => array_map(fn ($card) => (string) $card, $cards),
             'remaining' => $deck->getNumberOfCards(),
         ]);
     }

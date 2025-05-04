@@ -27,7 +27,7 @@ class CardHand
 
     public function __toString(): string
     {
-        $strings = array_map(fn($card) => (string) $card, $this->cards);
+        $strings = array_map(fn ($card) => (string) $card, $this->cards);
         return implode(', ', $strings);
     }
 }

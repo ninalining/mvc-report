@@ -20,18 +20,18 @@ class CardController extends AbstractController
     public function deck(SessionInterface $session): Response
     {
         $deck = $session->get('deck');
-    
+
         if (!$deck) {
             $deck = new DeckOfCards();
             $session->set('deck', $deck);
         }
-    
+
         $deck->sort();
         $groupedCards = [];
         foreach ($deck->getCards() as $card) {
             $groupedCards[$card->getSuit()][] = (string) $card;
         }
-    
+
         return $this->render('card/deck.html.twig', [
             'cards' => $groupedCards,
         ]);
