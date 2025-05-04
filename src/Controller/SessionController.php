@@ -13,7 +13,7 @@ class SessionController extends AbstractController
     public function index(SessionInterface $session): Response
     {
         $sessionData = $session->all();
-        dump($session->all());
+        //dump($session->all());
 
         return $this->render('session/index.html.twig', [
             'sessionData' => $sessionData,
