@@ -69,4 +69,22 @@ class DeckOfCards
             return $suitOrder[$a->getSuit()] <=> $suitOrder[$b->getSuit()];
         });
     }
+
+    public function getGroupedCards(): array
+    {
+        $grouped = [];
+        foreach ($this->deck as $card) {
+            if (method_exists($card, 'toArray')) {
+                $grouped[$card->getSuit()][] = $card->toArray();
+            } else {
+                $grouped[$card->getSuit()][] = [
+                    'label' => (string)$card,
+                    'cssClass' => 'playing-card',
+                    'suit' => $card->getSuit(),
+                    'value' => $card->getValue(),
+                ];
+            }
+        }
+        return $grouped;
+    }
 }

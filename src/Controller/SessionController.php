@@ -21,9 +21,11 @@ class SessionController extends AbstractController
             $shuffled = false;
             if ($deck instanceof \App\Card\DeckOfCards) {
                 foreach ($deck->getCards() as $c) {
-                    $deckCards[] = [
-                        'label' => method_exists($c, 'getLabel') ? $c->getLabel() : (string)$c,
-                        'cssClass' => method_exists($c, 'getCssClass') ? $c->getCssClass() : 'playing-card',
+                    $deckCards[] = method_exists($c, 'toArray') ? $c->toArray() : [
+                        'label' => (string)$c,
+                        'cssClass' => 'playing-card',
+                        'suit' => $c->getSuit(),
+                        'value' => $c->getValue(),
                     ];
                 }
                 $deckCount = $deck->getNumberOfCards();

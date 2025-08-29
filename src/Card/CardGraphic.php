@@ -26,4 +26,14 @@ class CardGraphic extends Card
     {
         return $this->getUnicodeSymbol();
     }
+
+    public function toArray(): array
+    {
+        return [
+            'label' => $this->getLabel(),
+            'cssClass' => $this->getCssClass(),
+            'suit' => $this->getSuit(),
+            'value' => $this->getValue(),
+        ];
+    }
 }

@@ -27,15 +27,7 @@ class CardController extends AbstractController
         }
 
         $deck->sort();
-        $groupedCards = [];
-        foreach ($deck->getCards() as $card) {
-            $groupedCards[$card->getSuit()][] = [
-                'cssClass' => method_exists($card, 'getCssClass') ? $card->getCssClass() : 'card',
-                'label' => method_exists($card, 'getLabel') ? $card->getLabel() : (string)$card,
-                'suit' => method_exists($card, 'getSuit') ? $card->getSuit() : '',
-                'value' => method_exists($card, 'getValue') ? $card->getValue() : '',
-            ];
-        }
+        $groupedCards = $deck->getGroupedCards();
 
         return $this->render('card/deck.html.twig', [
             'cards' => $groupedCards,
@@ -69,12 +61,14 @@ class CardController extends AbstractController
         $session->set('deck', $deck);
 
         $card = null;
-        if ($cardObj) {
+        if ($cardObj && method_exists($cardObj, 'toArray')) {
+            $card = $cardObj->toArray();
+        } elseif ($cardObj) {
             $card = [
-                'cssClass' => method_exists($cardObj, 'getCssClass') ? $cardObj->getCssClass() : 'card',
-                'label' => method_exists($cardObj, 'getLabel') ? $cardObj->getLabel() : (string)$cardObj,
-                'suit' => method_exists($cardObj, 'getSuit') ? $cardObj->getSuit() : '',
-                'value' => method_exists($cardObj, 'getValue') ? $cardObj->getValue() : '',
+                'label' => (string)$cardObj,
+                'cssClass' => 'playing-card',
+                'suit' => $cardObj->getSuit(),
+                'value' => $cardObj->getValue(),
             ];
         }
 
@@ -93,8 +87,16 @@ class CardController extends AbstractController
             $deck = new DeckOfCards();
         }
 
-        $cards = $deck->drawCards($number);
+        $cardsObj = $deck->drawCards($number);
         $session->set('deck', $deck);
+        $cards = array_map(function($c) {
+            return method_exists($c, 'toArray') ? $c->toArray() : [
+                'label' => (string)$c,
+                'cssClass' => 'playing-card',
+                'suit' => $c->getSuit(),
+                'value' => $c->getValue(),
+            ];
+        }, $cardsObj);
 
         return $this->render('card/draw_number.html.twig', [
             'cards' => $cards,
