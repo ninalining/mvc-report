@@ -6,8 +6,9 @@
 <div class="card-container">
     <h1>Dra ett kort från kortleken</h1>
 
+
     {% if card %}
-        <p class="card-message">Du drog: <span class="card">{{ card }}</span></p>
+    <p class="card-message">Du drog: <span class="{{ card.cssClass|default('playing-card') }}">{{ card.label|default(card.value ~ card.suit) }}</span></p>
     {% else %}
         <p class="card-message">Det finns inga fler kort att dra!</p>
     {% endif %}

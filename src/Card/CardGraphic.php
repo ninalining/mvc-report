@@ -17,4 +17,13 @@ class CardGraphic extends Card
     {
         return $this->getValue() . $this->getSuit();
     }
+    public function getCssClass(): string
+    {
+        return 'playing-card' . ($this->getColor() === 'red' ? ' red' : '');
+    }
+
+    public function getLabel(): string
+    {
+        return $this->getUnicodeSymbol();
+    }
 }

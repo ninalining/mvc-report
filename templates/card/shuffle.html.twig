@@ -7,7 +7,7 @@
     <h1>Kortleken efter blandning</h1>
     <div class="deck-cards">
         {% for card in cards %}
-            <span class="card">{{ card }}</span>
+            <span class="{{ card.cssClass|default('playing-card') }}">{{ card.label|default(card.value ~ card.suit) }}</span>
         {% endfor %}
     </div>
     <div class="card-actions">

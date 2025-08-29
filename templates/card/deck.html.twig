@@ -10,7 +10,7 @@
             <div class="suit-row">
                 <strong>{{ suit }}</strong>: 
                 {% for card in suitCards %}
-                    <span class="card">{{ card }}</span>
+                    <span class="{{ card.cssClass|default('playing-card') }}">{{ card.label|default(card.value ~ card.suit) }}</span>
                 {% endfor %}
             </div>
         {% endfor %}

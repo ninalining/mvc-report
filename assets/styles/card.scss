@@ -1,5 +1,17 @@
 @use 'variables' as *;
 
+.playing-card {
+  display: inline-block;
+  padding: 2px 6px;
+  margin: 2px;
+  border: 1px solid #999;
+  border-radius: 6px;
+}
+.playing-card.red {
+  color: #c62828 !important;
+  border-color: #c62828;
+}
+
 .card-container {
   display: flex;
   flex-direction: column;
@@ -59,6 +71,7 @@
     }
   }
 
+
   .card-info {
     background-color: $secondary-blue;
     color: $white;
@@ -108,30 +121,6 @@
     }
   }
 
-  .deck-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $space-sm;
-    justify-content: center;
-    margin: $space-md 0;
-
-    .card {
-      display: inline-block;
-      padding: $space-sm;
-      border: 1px solid $a-bit-more-grey;
-      border-radius: $radius-sm;
-      background-color: $white;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-      font-size: 1.2rem;
-      font-family: $font-body;
-      text-align: center;
-      color: $almost-black;
-
-      &.red {
-        color: $red !important;
-      }
-    }
-  }
 
   .btn {
     display: inline-block;

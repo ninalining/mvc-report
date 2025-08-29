@@ -5,6 +5,7 @@ namespace App\Card;
 class DeckOfCards
 {
     private array $deck = [];
+    private bool $shuffled = false;
 
     private static array $suits = ['♠', '♥', '♦', '♣'];
     private static array $values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
@@ -13,7 +14,7 @@ class DeckOfCards
     {
         foreach (self::$suits as $suit) {
             foreach (self::$values as $value) {
-                $this->deck[] = new Card($suit, $value);
+                $this->deck[] = new CardGraphic($suit, $value);
             }
         }
     }
@@ -21,6 +22,12 @@ class DeckOfCards
     public function shuffle(): void
     {
         shuffle($this->deck);
+        $this->shuffled = true;
+    }
+
+    public function isShuffled(): bool
+    {
+        return $this->shuffled;
     }
 
     public function drawCard(): ?Card

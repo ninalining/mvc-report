@@ -29,7 +29,12 @@ class CardController extends AbstractController
         $deck->sort();
         $groupedCards = [];
         foreach ($deck->getCards() as $card) {
-            $groupedCards[$card->getSuit()][] = (string) $card;
+            $groupedCards[$card->getSuit()][] = [
+                'cssClass' => method_exists($card, 'getCssClass') ? $card->getCssClass() : 'card',
+                'label' => method_exists($card, 'getLabel') ? $card->getLabel() : (string)$card,
+                'suit' => method_exists($card, 'getSuit') ? $card->getSuit() : '',
+                'value' => method_exists($card, 'getValue') ? $card->getValue() : '',
+            ];
         }
 
         return $this->render('card/deck.html.twig', [
@@ -60,8 +65,18 @@ class CardController extends AbstractController
             $deck = new DeckOfCards();
         }
 
-        $card = $deck->drawCard();
+        $cardObj = $deck->drawCard();
         $session->set('deck', $deck);
+
+        $card = null;
+        if ($cardObj) {
+            $card = [
+                'cssClass' => method_exists($cardObj, 'getCssClass') ? $cardObj->getCssClass() : 'card',
+                'label' => method_exists($cardObj, 'getLabel') ? $cardObj->getLabel() : (string)$cardObj,
+                'suit' => method_exists($cardObj, 'getSuit') ? $cardObj->getSuit() : '',
+                'value' => method_exists($cardObj, 'getValue') ? $cardObj->getValue() : '',
+            ];
+        }
 
         return $this->render('card/draw.html.twig', [
             'card' => $card,

@@ -18,6 +18,19 @@
         <p>Sessionen är tom.</p>
     {% endif %}
 
+<h2>Aktuell kortlek i session</h2>
+<p>Status: <strong>{% if shuffled %}Blandad (shuffled){% else %}Ej blandad (not shuffled){% endif %}</strong></p>
+<p>Antal kort kvar: <strong>{{ deckCount }}</strong></p>
+<div class="deck-cards">
+    {% if deckCards is not empty %}
+        {% for c in deckCards %}
+            <span class="{{ c.cssClass }}">{{ c.label }}</span>
+        {% endfor %}
+    {% else %}
+        <em>Ingen kortlek i session (eller inga kort kvar).</em>
+    {% endif %}
+</div>
+
     <a href="{{ path('session_delete') }}" class="btn">Radera Session</a>
 </div>
 {% endblock %}
