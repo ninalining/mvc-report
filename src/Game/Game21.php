@@ -122,13 +122,7 @@ class Game21
 
         foreach ($hand->getCards() as $card) {
             $value = $card->getValue();
-            $points = match (true) {
-                $value === 'A' => 14,
-                $value === 'K' => 13,
-                $value === 'Q' => 12,
-                $value === 'J' => 11,
-                default => (int) $value,
-            };
+            $points = $this->cardPoints($value);
 
             if ($value === 'A') {
                 $aces++;
@@ -143,6 +137,20 @@ class Game21
         }
 
         return $total;
+    }
+
+    /**
+     * Get point value for a card face value.
+     */
+    private function cardPoints(string $value): int
+    {
+        return match (true) {
+            $value === 'A' => 14,
+            $value === 'K' => 13,
+            $value === 'Q' => 12,
+            $value === 'J' => 11,
+            default => (int) $value,
+        };
     }
 
     /**

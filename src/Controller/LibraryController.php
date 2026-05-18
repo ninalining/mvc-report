@@ -52,12 +52,7 @@ class LibraryController extends AbstractController
         $book->setIsbn($request->request->get('isbn'));
         $book->setAuthor($request->request->get('author'));
 
-        $file = $request->files->get('image');
-        if ($file) {
-            $filename = uniqid() . '.' . $file->guessExtension();
-            $file->move($this->getParameter('kernel.project_dir') . '/public/img', $filename);
-            $book->setImage($filename);
-        }
+        $this->handleImageUpload($request, $book);
 
         $em->persist($book);
         $em->flush();
@@ -82,12 +77,7 @@ class LibraryController extends AbstractController
         $book->setIsbn($request->request->get('isbn'));
         $book->setAuthor($request->request->get('author'));
 
-        $file = $request->files->get('image');
-        if ($file) {
-            $filename = uniqid() . '.' . $file->guessExtension();
-            $file->move($this->getParameter('kernel.project_dir') . '/public/img', $filename);
-            $book->setImage($filename);
-        }
+        $this->handleImageUpload($request, $book);
 
         $em->flush();
 
@@ -133,5 +123,15 @@ class LibraryController extends AbstractController
 
         $this->addFlash('success', 'Biblioteket har återställts!');
         return $this->redirectToRoute('library_books');
+    }
+
+    private function handleImageUpload(Request $request, Book $book): void
+    {
+        $file = $request->files->get('image');
+        if ($file) {
+            $filename = uniqid() . '.' . $file->guessExtension();
+            $file->move($this->getParameter('kernel.project_dir') . '/public/img', $filename);
+            $book->setImage($filename);
+        }
     }
 }

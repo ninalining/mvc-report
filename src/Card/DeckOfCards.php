@@ -74,17 +74,14 @@ class DeckOfCards
     {
         $grouped = [];
         foreach ($this->deck as $card) {
-            /** @var CardGraphic|Card $card */
-            if ($card instanceof CardGraphic) {
-                $grouped[$card->getSuit()][] = $card->toArray();
-                continue;
-            }
-            $grouped[$card->getSuit()][] = [
-                'label' => (string)$card,
-                'cssClass' => 'playing-card',
-                'suit' => $card->getSuit(),
-                'value' => $card->getValue(),
-            ];
+            $grouped[$card->getSuit()][] = $card instanceof CardGraphic
+                ? $card->toArray()
+                : [
+                    'label' => (string)$card,
+                    'cssClass' => 'playing-card',
+                    'suit' => $card->getSuit(),
+                    'value' => $card->getValue(),
+                ];
         }
         return $grouped;
     }
