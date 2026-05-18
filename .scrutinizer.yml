@@ -2,15 +2,15 @@ checks:
     php: true
 
 build:
+    environment:
+        php:
+            version: '8.3'
     nodes:
         analysis:
             tests:
                 override:
                     - php-scrutinizer-run
         coverage:
-            environment:
-                php:
-                    version: '8.3'
             tests:
                 override:
                     -
