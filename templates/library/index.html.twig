@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block body %}
+<div class="library">
+    <h1>Bibliotek</h1>
+    <p>Välkommen till biblioteket! Här kan du se, lägga till, redigera och ta bort böcker.</p>
+
+    <div class="library-actions">
+        <a href="{{ path('library_books') }}" class="btn">Visa alla böcker</a>
+        <a href="{{ path('library_create') }}" class="btn">Lägg till ny bok</a>
+        <a href="{{ path('library_reset') }}" class="btn">Återställ biblioteket</a>
+    </div>
+</div>
+{% endblock %}

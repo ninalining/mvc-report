@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if book %}Redigera bok{% else %}Lägg till bok{% endif %}{% endblock %}
+
+{% block body %}
+<div class="library">
+    <h1>{% if book %}Redigera bok{% else %}Lägg till ny bok{% endif %}</h1>
+
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" class="library-form">
+        <div class="form-group">
+            <label for="title">Titel:</label>
+            <input type="text" id="title" name="title" value="{{ book ? book.title : '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" value="{{ book ? book.isbn : '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="author">Författare:</label>
+            <input type="text" id="author" name="author" value="{{ book ? book.author : '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Bild:</label>
+            {% if book and book.image %}
+                <p><img src="{{ asset('img/' ~ book.image) }}" alt="Nuvarande bild" class="book-thumb"></p>
+            {% endif %}
+            <input type="file" id="image" name="image" accept="image/*">
+            {% if book and book.image %}
+                <small>Lämna tomt för att behålla nuvarande bild.</small>
+            {% endif %}
+        </div>
+
+        <div class="library-actions">
+            <button type="submit" class="btn">{% if book %}Spara ändringar{% else %}Lägg till{% endif %}</button>
+            <a href="{{ path('library_books') }}" class="btn">Avbryt</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

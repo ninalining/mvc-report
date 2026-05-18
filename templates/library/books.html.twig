@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alla böcker{% endblock %}
+
+{% block body %}
+<div class="library">
+    <h1>Alla böcker</h1>
+
+    {% if books is empty %}
+        <p>Inga böcker i biblioteket. <a href="{{ path('library_create') }}">Lägg till en bok</a> eller <a href="{{ path('library_reset') }}">återställ biblioteket</a>.</p>
+    {% else %}
+        <table class="library-table">
+            <thead>
+                <tr>
+                    <th>Bild</th>
+                    <th>Titel</th>
+                    <th>Författare</th>
+                    <th>ISBN</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td><img src="{{ asset('img/' ~ book.image) }}" alt="{{ book.title }}" class="book-thumb"></td>
+                    <td><a href="{{ path('library_book_show', {id: book.id}) }}">{{ book.title }}</a></td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.isbn }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <div class="library-actions">
+        <a href="{{ path('library_create') }}" class="btn">Lägg till ny bok</a>
+        <a href="{{ path('library_index') }}" class="btn">Tillbaka</a>
+    </div>
+</div>
+{% endblock %}
