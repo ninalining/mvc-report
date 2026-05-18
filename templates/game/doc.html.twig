@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortspelet 21 - Dokumentation{% endblock %}
+
+{% block body %}
+<div class="game-container">
+    <h1>Dokumentation - Kortspelet 21</h1>
+
+    <section>
+        <h2>Flödesschema</h2>
+        <img src="{{ asset('img/kortspel21.png') }}" alt="Flödesschema för Kortspelet 21" style="max-width: 100%;">
+    </section>
+
+    <section>
+        <h2>Pseudokod</h2>
+        <pre>
+class Game21:
+    deck: DeckOfCards
+    player: CardHand
+    dealer: CardHand
+    status: "playing" | "player_bust" | "dealer_bust" | "player_win" | "dealer_win"
+
+    method start():
+        deck = new DeckOfCards()
+        deck.shuffle()
+        player = new CardHand()
+        dealer = new CardHand()
+        player.addCard(deck.drawCard())
+        dealer.addCard(deck.drawCard())
+        status = "playing"
+
+    method playerHit():
+        player.addCard(deck.drawCard())
+        if getHandValue(player) > 21:
+            status = "player_bust"
+
+    method playerStand():
+        dealerPlay()
+
+    method dealerPlay():
+        while getHandValue(dealer) < 17:
+            dealer.addCard(deck.drawCard())
+        if getHandValue(dealer) > 21:
+            status = "dealer_bust"
+        else:
+            compareHands()
+
+    method getHandValue(hand):
+        total = 0, aces = 0
+        for each card in hand:
+            if card is Ace: total += 14, aces++
+            else if card is K: total += 13
+            else if card is Q: total += 12
+            else if card is J: total += 11
+            else: total += card face value
+        while total > 21 and aces > 0:
+            total -= 13 (change Ace from 14 to 1)
+            aces--
+        return total
+
+    method compareHands():
+        if dealer >= player: status = "dealer_win"
+        else: status = "player_win"
+        </pre>
+    </section>
+
+    <section>
+        <h2>Klasser</h2>
+        <ul>
+            <li><strong>Card</strong> — Representerar ett enskilt kort med färg och värde.</li>
+            <li><strong>CardGraphic</strong> — Utökar Card med grafisk representation (färg, CSS-klass, unicode-symbol).</li>
+            <li><strong>CardHand</strong> — Representerar en hand med kort, kan lägga till och visa kort.</li>
+            <li><strong>DeckOfCards</strong> — Representerar en hel kortlek, kan blandas och dras ifrån.</li>
+            <li><strong>Game21</strong> — Spelets huvudlogik: hanterar spelflödet, poängberäkning och vinstvillkor.</li>
+        </ul>
+    </section>
+
+    <p><a href="{{ path('game_index') }}" class="btn">Tillbaka till spelet</a></p>
+</div>
+{% endblock %}

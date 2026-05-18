@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortspelet 21 - Resultat{% endblock %}
+
+{% block body %}
+<div class="game-container">
+    <h1>Resultat</h1>
+
+    <div class="game-result {{ status }}">
+        <p class="result-message">{{ message }}</p>
+    </div>
+
+    <div class="game-board">
+        <section class="hand dealer-hand">
+            <h2>Bankens hand ({{ dealerValue }} poäng)</h2>
+            <div class="cards">
+                {% for card in dealerHand.cards %}
+                    <span class="playing-card {{ card.color is defined and card.color == 'red' ? 'red' : '' }}">
+                        {{ card }}
+                    </span>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="hand player-hand">
+            <h2>Din hand ({{ playerValue }} poäng)</h2>
+            <div class="cards">
+                {% for card in playerHand.cards %}
+                    <span class="playing-card {{ card.color is defined and card.color == 'red' ? 'red' : '' }}">
+                        {{ card }}
+                    </span>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <div class="game-actions">
+        <a href="{{ path('game_start') }}" class="btn">Ny omgång</a>
+        <a href="{{ path('game_index') }}" class="btn">Tillbaka</a>
+    </div>
+</div>
+{% endblock %}

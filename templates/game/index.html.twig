@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortspelet 21{% endblock %}
+
+{% block body %}
+<div class="game-container">
+    <h1>Kortspelet 21</h1>
+
+    <section class="game-info">
+        <h2>Spelregler</h2>
+        <p>Kortspelet 21 är ett spel där du spelar mot banken. Målet är att få så nära 21 poäng som möjligt utan att överskrida 21.</p>
+        <ul>
+            <li>Kort 2–10 har sitt nominella värde.</li>
+            <li>Knekt (J) = 11, Dam (Q) = 12, Kung (K) = 13.</li>
+            <li>Ess (A) = 1 eller 14 (det bästa värdet som inte överstiger 21).</li>
+            <li>Spelaren drar kort tills hen väljer att stanna eller blir "tjock" (över 21).</li>
+            <li>Banken drar kort tills den har 17 eller mer.</li>
+            <li>Banken vinner vid lika poäng.</li>
+        </ul>
+    </section>
+
+    <div class="game-actions">
+        <a href="{{ path('game_start') }}" class="btn">Starta spelet</a>
+        <a href="{{ path('game_doc') }}" class="btn">Dokumentation</a>
+    </div>
+</div>
+{% endblock %}

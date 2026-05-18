@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Kortspelet 21 - Spela{% endblock %}
+
+{% block body %}
+<div class="game-container">
+    <h1>Kortspelet 21</h1>
+
+    <div class="game-board">
+        <section class="hand dealer-hand">
+            <h2>Bankens hand ({{ dealerValue }} poäng)</h2>
+            <div class="cards">
+                {% for card in dealerHand.cards %}
+                    <span class="playing-card {{ card.color is defined and card.color == 'red' ? 'red' : '' }}">
+                        {{ card }}
+                    </span>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="hand player-hand">
+            <h2>Din hand ({{ playerValue }} poäng)</h2>
+            <div class="cards">
+                {% for card in playerHand.cards %}
+                    <span class="playing-card {{ card.color is defined and card.color == 'red' ? 'red' : '' }}">
+                        {{ card }}
+                    </span>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    {% if gameOver %}
+        <div class="game-message">
+            <p><strong>{{ message }}</strong></p>
+            <a href="{{ path('game_result') }}" class="btn">Visa resultat</a>
+        </div>
+    {% else %}
+        <div class="game-actions">
+            <form action="{{ path('game_hit') }}" method="post" style="display:inline;">
+                <button type="submit" class="btn">Ta kort</button>
+            </form>
+            <form action="{{ path('game_stand') }}" method="post" style="display:inline;">
+                <button type="submit" class="btn">Stanna</button>
+            </form>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
