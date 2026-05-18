@@ -99,7 +99,8 @@
             "@csfix:dry"
         ],
         "phpunit": "XDEBUG_MODE=coverage php bin/phpunit --coverage-html docs/coverage",
-        "phpdoc": "tools/phpdoc/phpdoc"
+        "phpdoc": "tools/phpdoc/phpdoc",
+        "metrics": "php tools/phpmetrics/phpmetrics --report-html=docs/metrics src"
     },
     "conflict": {
         "symfony/symfony": "*"
