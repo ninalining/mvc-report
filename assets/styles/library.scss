@@ -1,0 +1,111 @@
+.library {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+
+    h1 {
+        margin-bottom: 1rem;
+    }
+}
+
+.library-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+
+        &:hover {
+            background-color: #555;
+        }
+    }
+
+    .btn-danger {
+        background-color: #c0392b;
+
+        &:hover {
+            background-color: #e74c3c;
+        }
+    }
+}
+
+.library-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 0.5rem;
+        text-align: left;
+    }
+
+    th {
+        background-color: #333;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    a {
+        color: #2980b9;
+    }
+}
+
+.book-thumb {
+    width: 50px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.book-detail {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+
+    .book-cover {
+        width: 200px;
+        height: 280px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+    }
+
+    .book-info {
+        p {
+            margin: 0.5rem 0;
+        }
+    }
+}
+
+.library-form {
+    max-width: 500px;
+    margin-top: 1rem;
+
+    .form-group {
+        margin-bottom: 1rem;
+
+        label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+    }
+}

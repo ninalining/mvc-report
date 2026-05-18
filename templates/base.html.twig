@@ -36,6 +36,9 @@
             <li class="{% if app.request.attributes.get('_route') starts with 'game' %}active{% endif %}">
                 <a href="{{ path('game_index') }}">Game</a>
             </li>
+            <li class="{% if app.request.attributes.get('_route') starts with 'library' %}active{% endif %}">
+                <a href="{{ path('library_index') }}">Library</a>
+            </li>
             <li class="{% if app.request.attributes.get('_route') == 'api_index' %}active{% endif %}">
                 <a href="{{ path('api_index') }}">API</a>
             </li>
