@@ -37,4 +37,5 @@ yarn-error.log
 plan/
 
 /docs/
+/public/docs/
 .phpdoc/
