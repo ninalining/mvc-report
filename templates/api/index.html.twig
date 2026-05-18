@@ -11,6 +11,7 @@
         <li>/api/deck/shuffle - Blandar kortleken och returnerar den (POST endast).</li>
         <li>/api/deck/draw - Drar ett kort från kortleken och visar det (POST endast).</li>
         <li>/api/deck/draw/:number - Drar ett angivet antal kort från kortleken och visar dem (POST endast).</li>
+        <li><a href="{{ path('api_game') }}">/api/game</a> - Visar aktuell ställning i kortspelet 21 (spelarens och bankens hand, poäng, status).</li>
     </ul>
 </div>
 {% endblock %}

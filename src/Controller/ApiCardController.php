@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Card\DeckOfCards;
+use App\Game\Game21;
 
 class ApiCardController extends AbstractController
 {
@@ -58,6 +59,32 @@ class ApiCardController extends AbstractController
         return $this->json([
             'cards' => array_map(fn ($card) => (string) $card, $cards),
             'remaining' => $deck->getNumberOfCards(),
+        ]);
+    }
+
+    #[Route('/api/game', name: 'api_game', methods: ['GET'])]
+    public function getGame(SessionInterface $session): JsonResponse
+    {
+        $game = $session->get('game21');
+
+        if (!$game instanceof Game21) {
+            return $this->json([
+                'message' => 'Inget spel har startats.',
+            ]);
+        }
+
+        return $this->json([
+            'player' => [
+                'hand' => array_map(fn ($card) => (string) $card, $game->getPlayerHand()->getCards()),
+                'value' => $game->getHandValue($game->getPlayerHand()),
+            ],
+            'dealer' => [
+                'hand' => array_map(fn ($card) => (string) $card, $game->getDealerHand()->getCards()),
+                'value' => $game->getHandValue($game->getDealerHand()),
+            ],
+            'status' => $game->getStatus(),
+            'message' => $game->getStatusMessage(),
+            'gameOver' => $game->isGameOver(),
         ]);
     }
 }
