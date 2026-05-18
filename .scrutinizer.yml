@@ -3,15 +3,15 @@ checks:
 
 build:
     image: default-bionic
+    environment:
+        php:
+            version: 8.3.3
     nodes:
         analysis:
             tests:
                 override:
                     - php-scrutinizer-run
         coverage:
-            environment:
-                php:
-                    version: 8.3.3
             tests:
                 override:
                     -
