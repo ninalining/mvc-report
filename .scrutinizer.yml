@@ -1,0 +1,29 @@
+checks:
+    php: true
+
+build:
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run
+        coverage:
+            environment:
+                php:
+                    version: '8.3'
+            tests:
+                override:
+                    -
+                        command: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.clover
+                        coverage:
+                            file: coverage.clover
+                            format: php-clover
+
+filter:
+    excluded_paths:
+        - tests/
+        - var/
+        - vendor/
+        - tools/
+        - migrations/
+        - config/
