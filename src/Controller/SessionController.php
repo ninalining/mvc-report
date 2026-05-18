@@ -29,7 +29,7 @@ class SessionController extends AbstractController
                 ];
             }
             $deckCount = $deck->getNumberOfCards();
-            $shuffled = method_exists($deck, 'isShuffled') ? $deck->isShuffled() : false;
+            $shuffled = $deck->isShuffled();
         }
 
         return $this->render('session/index.html.twig', [
