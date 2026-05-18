@@ -12,6 +12,8 @@
         <li>/api/deck/draw - Drar ett kort från kortleken och visar det (POST endast).</li>
         <li>/api/deck/draw/:number - Drar ett angivet antal kort från kortleken och visar dem (POST endast).</li>
         <li><a href="{{ path('api_game') }}">/api/game</a> - Visar aktuell ställning i kortspelet 21 (spelarens och bankens hand, poäng, status).</li>
+        <li><a href="{{ path('api_library_books') }}">/api/library/books</a> - Visar samtliga böcker i biblioteket som JSON.</li>
+        <li><a href="{{ path('api_library_book_by_isbn', {isbn: '978-91-00-00001-1'}) }}">/api/library/book/978-91-00-00001-1</a> - Visar en bok via ISBN (exempel: Katten Misse).</li>
     </ul>
 </div>
 {% endblock %}
