@@ -2,21 +2,22 @@ checks:
     php: true
 
 build:
-    environment:
-        php:
-            version: '8.3'
+    image: default-bionic
     nodes:
         analysis:
             tests:
                 override:
                     - php-scrutinizer-run
         coverage:
+            environment:
+                php:
+                    version: 8.3.3
             tests:
                 override:
                     -
-                        command: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.clover
+                        command: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=docs/coverage.clover
                         coverage:
-                            file: coverage.clover
+                            file: docs/coverage.clover
                             format: php-clover
 
 filter:
