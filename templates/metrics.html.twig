@@ -1,0 +1,104 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block body %}
+<div class="metrics-page">
+    <h1>Metrics - Kodkvalitet</h1>
+
+    <section id="intro">
+        <h2>Introduktion</h2>
+        <p>Denna sida analyserar kodkvaliteten i projektet utifrån de sex C:na (6C) för att identifiera förbättringsmöjligheter. Analysen baseras på data från phpmetrics och Scrutinizer.</p>
+    </section>
+
+    <section id="codestyle">
+        <h2>Codestyle</h2>
+        <p>Kodstilen kontrolleras med PHP CS Fixer som säkerställer att koden följer PSR-12-standarden. Alla filer i src/ och tests/ kontrolleras automatiskt. En konsekvent kodstil förbättrar läsbarhet och underhållbarhet.</p>
+        <p>Kör <code>composer csfix</code> för att automatiskt åtgärda stilfel, eller <code>composer csfix:dry</code> för att se vilka ändringar som behövs utan att applicera dem.</p>
+    </section>
+
+    <section id="coverage">
+        <h2>Coverage</h2>
+        <p>Kodtäckning (code coverage) mäter hur stor del av koden som testas av enhetstester. Hög täckning ger mer tillförlitlig kod men garanterar inte att testerna är bra.</p>
+        <p><strong>Nuvarande täckning:</strong> 93% line coverage (41 tester, 62 assertions).</p>
+        <p>Täckningsrapporten genereras med <code>composer phpunit</code> och finns tillgänglig i <code>docs/coverage</code>.</p>
+    </section>
+
+    <section id="complexity">
+        <h2>Complexity</h2>
+        <p>Cyklomatisk komplexitet (CCN) mäter antalet oberoende exekveringsvägar genom koden. Hög komplexitet gör koden svårare att testa och underhålla.</p>
+        <p><strong>Genomsnittlig CCN:</strong> 4.33 per klass.</p>
+        <p><strong>Genomsnittlig WMC:</strong> 7.6 (Weighted Methods per Class).</p>
+        <p>Klasser med hög komplexitet bör brytas ner i mindre metoder eller klasser.</p>
+    </section>
+
+    <section id="cohesion">
+        <h2>Cohesion</h2>
+        <p>Kohesion (LCOM - Lack of Cohesion of Methods) mäter hur väl metoderna i en klass hör samman. Lågt LCOM-värde innebär god kohesion.</p>
+        <p><strong>Genomsnittlig LCOM:</strong> 1.13</p>
+        <p>Ett värde nära 1 indikerar att klasserna har god kohesion och att metoderna arbetar med samma data.</p>
+    </section>
+
+    <section id="coupling">
+        <h2>Coupling</h2>
+        <p>Koppling mäter beroenden mellan klasser. Hög koppling gör det svårt att ändra en klass utan att påverka andra.</p>
+        <p><strong>Genomsnittlig afferent coupling:</strong> 0.73 (inkommande beroenden)</p>
+        <p><strong>Genomsnittlig efferent coupling:</strong> 2.4 (utgående beroenden)</p>
+        <p><strong>Genomsnittlig instabilitet:</strong> 0.72</p>
+        <p>Kontrollerna har naturligt högre koppling då de binder samman modeller, vyer och tjänster.</p>
+    </section>
+
+    <section id="crap">
+        <h2>CRAP</h2>
+        <p>CRAP-score (Change Risk Anti-Patterns) kombinerar komplexitet och testtäckning. Hög komplexitet med låg täckning ger högt CRAP-värde, vilket indikerar riskfylld kod.</p>
+        <p><strong>Underhållbarhetsindex (MI):</strong> 78.84 (genomsnitt). Värden över 65 anses bra.</p>
+        <p>Metoder med högt CRAP-värde bör antingen förenklas eller få bättre testtäckning.</p>
+    </section>
+
+    <section id="phpmetrics">
+        <h2>phpmetrics</h2>
+        <p>Den fullständiga phpmetrics-rapporten visar detaljerad analys av alla klasser och paket.</p>
+        <p><a href="{{ asset('docs/metrics/index.html') }}">Öppna phpmetrics-rapport</a></p>
+        <h3>Sammanfattning</h3>
+        <ul>
+            <li>Antal klasser: 15</li>
+            <li>Antal metoder: 64</li>
+            <li>Lines of code: 748</li>
+            <li>Logical lines of code: 643</li>
+        </ul>
+    </section>
+
+    <section id="scrutinizer">
+        <h2>Scrutinizer</h2>
+        <p>Scrutinizer CI analyserar koden automatiskt vid varje push och ger betyg, täckning och kodkvalitetspoäng.</p>
+        <p>
+            <a href="https://scrutinizer-ci.com/g/ninalining/mvc-report/">
+                <img src="https://scrutinizer-ci.com/g/ninalining/mvc-report/badges/quality-score.png?b=main" alt="Scrutinizer Code Quality">
+            </a>
+            <a href="https://scrutinizer-ci.com/g/ninalining/mvc-report/">
+                <img src="https://scrutinizer-ci.com/g/ninalining/mvc-report/badges/coverage.png?b=main" alt="Code Coverage">
+            </a>
+            <a href="https://scrutinizer-ci.com/g/ninalining/mvc-report/">
+                <img src="https://scrutinizer-ci.com/g/ninalining/mvc-report/badges/build.png?b=main" alt="Build Status">
+            </a>
+        </p>
+    </section>
+
+    <section id="improvements">
+        <h2>Förbättringar</h2>
+        <p>Baserat på analysen identifieras följande förbättringsområden:</p>
+        <ol>
+            <li><strong>Minska komplexitet i LibraryController:</strong> Metoden create() hanterar både formulärvisning och filuppladdning. Kan brytas ned i mindre hjälpmetoder.</li>
+            <li><strong>Förbättra Game21-klassen:</strong> Metoden play() har relativt hög cyklomatisk komplexitet med flera match-villkor. Kan refaktoreras med Strategy-mönster eller mindre privata metoder.</li>
+            <li><strong>Öka testtäckning för controllers:</strong> Controllers är exkluderade från täckning. Lägga till funktionella tester skulle förbättra den totala CRAP-scoren.</li>
+        </ol>
+    </section>
+
+    <section id="discussion">
+        <h2>Diskussion</h2>
+        <p>Kan man aktivt jobba med kodkvalitet och "clean code" på detta sätt? Absolut. Verktyg som phpmetrics och Scrutinizer ger objektiva mått som hjälper utvecklare att identifiera problemområden. Dock är verktygen bara vägledande – höga metrics-värden garanterar inte bra kod, och låga värden behöver inte alltid fixas.</p>
+        <p>Fördelar med detta arbetssätt inkluderar tidig identifiering av teknisk skuld, gemensamt språk för kodkvalitet i team, och automatiserad övervakning via CI. Nackdelar kan vara att man optimerar för siffror istället för läsbarhet, och att det tar tid att konfigurera och tolka verktygen.</p>
+        <p>Andra möjligheter att jobba mot "clean code" inkluderar kodgranskning (code review), parprogrammering, kontinuerlig refaktorering, och att följa etablerade designmönster.</p>
+    </section>
+</div>
+{% endblock %}

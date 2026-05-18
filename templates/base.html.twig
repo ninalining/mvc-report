@@ -42,6 +42,9 @@
             <li class="{% if app.request.attributes.get('_route') == 'api_index' %}active{% endif %}">
                 <a href="{{ path('api_index') }}">API</a>
             </li>
+            <li class="{% if app.request.attributes.get('_route') == 'metrics' %}active{% endif %}">
+                <a href="{{ path('metrics') }}">Metrics</a>
+            </li>
         </ul>
     </nav>
 

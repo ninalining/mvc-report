@@ -1,0 +1,58 @@
+.metrics-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+
+    h1 {
+        margin-bottom: 1.5rem;
+    }
+
+    section {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 0.75rem;
+    }
+
+    p {
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+    }
+
+    code {
+        background: #f4f4f4;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+
+    ol {
+        padding-left: 1.5rem;
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+    }
+
+    ul {
+        padding-left: 1.5rem;
+
+        li {
+            margin-bottom: 0.3rem;
+        }
+    }
+
+    img {
+        vertical-align: middle;
+        margin-right: 0.5rem;
+    }
+}

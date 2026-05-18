@@ -44,6 +44,12 @@ class PageController extends AbstractController
         return $this->render('api/index.html.twig');
     }
 
+    #[Route('/metrics', name: 'metrics')]
+    public function metrics(): Response
+    {
+        return $this->render('metrics.html.twig');
+    }
+
     #[Route('/api/quote', name: 'api_quote')]
     public function quote(): JsonResponse
     {
