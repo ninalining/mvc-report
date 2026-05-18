@@ -6,7 +6,7 @@ class CardGraphic extends Card
 {
     public function getColor(): string
     {
-        
+
         if ($this->getSuit() === '♥' || $this->getSuit() === '♦') {
             return 'red';
         }

@@ -2,6 +2,8 @@
 
 namespace App\Card;
 
+use Exception;
+
 class Card
 {
     private string $suit;
@@ -38,6 +40,6 @@ class Card
             return $this->value;
         }
 
-        throw new \Exception("Property {$name} does not exist");
+        throw new Exception("Property {$name} does not exist");
     }
 }

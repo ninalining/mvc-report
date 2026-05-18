@@ -89,7 +89,7 @@ class CardController extends AbstractController
 
         $cardsObj = $deck->drawCards($number);
         $session->set('deck', $deck);
-        $cards = array_map(function($c) {
+        $cards = array_map(function ($c) {
             return method_exists($c, 'toArray') ? $c->toArray() : [
                 'label' => (string)$c,
                 'cssClass' => 'playing-card',
