@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+    configVersion="3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://www.phpdoc.org/changes/namespaces"
+    xsi:noNamespaceSchemaLocation="https://docs.phpdoc.org/latest/references/phpdoc/phpdoc.xsd"
+>
+    <paths>
+        <output>docs/api</output>
+    </paths>
+    <version number="3.0.0">
+        <api>
+            <source dsn=".">
+                <path>src</path>
+            </source>
+            <ignore hidden="true" symlinks="true">
+                <path>src/Kernel.php</path>
+            </ignore>
+        </api>
+    </version>
+</phpdocumentor>
