@@ -2,6 +2,10 @@
 
 # Symfony MVC-webbplats – Nina Li
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ninalining/mvc-report/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/ninalining/mvc-report/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/ninalining/mvc-report/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/ninalining/mvc-report/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/ninalining/mvc-report/badges/build.png?b=main)](https://scrutinizer-ci.com/g/ninalining/mvc-report/build-status/main)
+
 Detta är mitt projekt i MVC-kursen på BTH, byggt med Symfony. Projektet visar en grundläggande implementering av MVC-arkitekturen, inklusive routing, templating, SCSS-stilhantering och JSON API-gränssnitt.
 
 ---
