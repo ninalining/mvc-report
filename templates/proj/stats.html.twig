@@ -1,0 +1,112 @@
+{% extends "proj/base_proj.html.twig" %}
+
+{% block title %}Black Jack — Statistik{% endblock %}
+
+{% block body %}
+<div class="proj-about">
+    <h1>Spelstatistik</h1>
+
+    {% if stats is empty %}
+        <p>Inga spelare har spelat ännu. <a href="{{ path('proj_blackjack_login') }}">Starta ett spel!</a></p>
+    {% else %}
+        {% for player in stats %}
+        <div style="background: #16213e; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; border-left: 4px solid #e2b714;">
+            <h2 style="color: #e2b714; margin-top: 0;">{{ player.name }}</h2>
+
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <div>
+                    <span style="color: #aaa;">Saldo:</span>
+                    <strong style="color: #2e7d32;">{{ player.balance }} kr</strong>
+                </div>
+                <div>
+                    <span style="color: #aaa;">Rundor:</span>
+                    <strong>{{ player.totalRounds }}</strong>
+                </div>
+                <div>
+                    <span style="color: #aaa;">Vinster:</span>
+                    <strong style="color: #66bb6a;">{{ player.wins }}</strong>
+                </div>
+                <div>
+                    <span style="color: #aaa;">Förluster:</span>
+                    <strong style="color: #ef5350;">{{ player.losses }}</strong>
+                </div>
+                <div>
+                    <span style="color: #aaa;">Lika:</span>
+                    <strong style="color: #e2b714;">{{ player.pushes }}</strong>
+                </div>
+                <div>
+                    <span style="color: #aaa;">Black Jack:</span>
+                    <strong style="color: #e2b714;">{{ player.blackjacks }}</strong>
+                </div>
+            </div>
+
+            {# Win rate bar #}
+            {% if player.totalRounds > 0 %}
+            <div style="margin-bottom: 1rem;">
+                <span style="color: #aaa;">Vinstprocent: {{ player.winRate }}%</span>
+                <div style="background: #0f3460; border-radius: 4px; height: 20px; margin-top: 4px; overflow: hidden;">
+                    <div style="background: linear-gradient(90deg, #2e7d32, #66bb6a); height: 100%; width: {{ player.winRate }}%; border-radius: 4px; transition: width 0.3s;"></div>
+                </div>
+            </div>
+
+            {# Result distribution bar #}
+            <div style="margin-bottom: 1rem;">
+                <span style="color: #aaa;">Resultatfördelning:</span>
+                <div style="display: flex; height: 20px; margin-top: 4px; border-radius: 4px; overflow: hidden;">
+                    {% if player.wins > 0 %}
+                        <div style="background: #2e7d32; width: {{ (player.wins / player.totalRounds * 100) }}%; min-width: 2px;" title="Vinster: {{ player.wins }}"></div>
+                    {% endif %}
+                    {% if player.pushes > 0 %}
+                        <div style="background: #e2b714; width: {{ (player.pushes / player.totalRounds * 100) }}%; min-width: 2px;" title="Lika: {{ player.pushes }}"></div>
+                    {% endif %}
+                    {% if player.losses > 0 %}
+                        <div style="background: #c62828; width: {{ (player.losses / player.totalRounds * 100) }}%; min-width: 2px;" title="Förluster: {{ player.losses }}"></div>
+                    {% endif %}
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 4px; font-size: 0.85rem;">
+                    <span style="color: #66bb6a;">■ Vinst</span>
+                    <span style="color: #e2b714;">■ Lika</span>
+                    <span style="color: #ef5350;">■ Förlust</span>
+                </div>
+            </div>
+            {% endif %}
+
+            {# Recent rounds table #}
+            {% if player.recentRounds is not empty %}
+            <h3 style="color: #e2b714; margin-top: 1rem;">Senaste rundor</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #0f3460; color: #aaa;">
+                        <th style="text-align: left; padding: 6px;">Datum</th>
+                        <th style="text-align: center; padding: 6px;">Insats</th>
+                        <th style="text-align: center; padding: 6px;">Spelare</th>
+                        <th style="text-align: center; padding: 6px;">Bank</th>
+                        <th style="text-align: center; padding: 6px;">Resultat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for round in player.recentRounds %}
+                    <tr style="border-bottom: 1px solid #0f3460;">
+                        <td style="padding: 6px;">{{ round.createdAt|date('Y-m-d H:i') }}</td>
+                        <td style="text-align: center; padding: 6px;">{{ round.bet }} kr</td>
+                        <td style="text-align: center; padding: 6px;">{{ round.playerScore }}</td>
+                        <td style="text-align: center; padding: 6px;">{{ round.dealerScore }}</td>
+                        <td style="text-align: center; padding: 6px;">
+                            {% if round.result == 'player_win' or round.result == 'dealer_bust' or round.result == 'blackjack' %}
+                                <span style="color: #66bb6a;">{{ round.result == 'blackjack' ? 'BJ!' : 'Vinst' }}</span>
+                            {% elseif round.result == 'push' %}
+                                <span style="color: #e2b714;">Lika</span>
+                            {% else %}
+                                <span style="color: #ef5350;">Förlust</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
