@@ -1,0 +1,83 @@
+{% extends "proj/base_proj.html.twig" %}
+
+{% block title %}Black Jack — Databas{% endblock %}
+
+{% block body %}
+<div class="proj-about">
+    <h1>Om databasen</h1>
+
+    <h2>ER-diagram</h2>
+    <pre style="background: #0f3460; padding: 1rem; border-radius: 8px; color: #e2b714; overflow-x: auto;">
+┌──────────────────┐       ┌──────────────────────┐
+│     Player       │       │     GameRound         │
+├──────────────────┤       ├──────────────────────┤
+│ id (PK)          │──┐    │ id (PK)              │
+│ name (unique)    │  │    │ player_id (FK)       │←─┘
+│ balance          │  └───→│ bet                  │
+└──────────────────┘       │ result               │
+                           │ player_score         │
+                           │ dealer_score         │
+                           │ created_at           │
+                           └──────────────────────┘
+    </pre>
+
+    <h2>Tabellbeskrivning</h2>
+    <p><strong>Player</strong> — Lagrar spelarens namn och aktuellt saldo i spelet.</p>
+    <p><strong>GameRound</strong> — Lagrar resultatet av varje spelomgång, inklusive insats, 
+       spelarens och bankens poäng, samt tidsstämpel.</p>
+
+    <h2>Relationer</h2>
+    <p>
+        Relationen mellan tabellerna är en <strong>en-till-många</strong> (OneToMany) relation:
+        en spelare kan ha många spelomgångar, men varje spelomgång tillhör exakt en spelare.
+        Detta implementeras med Doctrine ORM genom <code>@ORM\ManyToOne</code> och 
+        <code>@ORM\OneToMany</code> attribut, med en foreign key (<code>player_id</code>) 
+        i GameRound-tabellen som pekar på Player-tabellens primärnyckel.
+    </p>
+
+    <h2>Databas</h2>
+    <p>
+        Projektet använder <strong>SQLite</strong> som databas. SQLite valdes eftersom det inte
+        kräver en separat databasserver och fungerar bra för ett projekt av denna storlek.
+        Databasfilen lagras i <code>var/data.db</code>.
+    </p>
+
+    <h2>Enhetstester</h2>
+    <p>
+        Enhetstester för spelets kärnlogik (BlackJack, BlackJackHand) körs utan databas.
+        Entity-klasserna (Player, GameRound) testas med getters/setters i isolerade tester.
+        Kodtäckningen ligger på över 90%.
+    </p>
+
+    <h2>Scrutinizer och databas</h2>
+    <p>
+        På Scrutinizer körs enhetstesterna utan problem eftersom testerna för spellogiken
+        inte kräver en databasanslutning. Entity-testerna testar bara POPO-objekt (Plain Old PHP Objects).
+        Ingen faktisk databas krävs i CI-miljön.
+    </p>
+
+    <h2>ORM vs traditionell databas</h2>
+    <p>
+        I databaskursen jobbade vi direkt med SQL-frågor, antingen via PDO eller liknande
+        databasbibliotek. Man skrev SELECT, INSERT, UPDATE och DELETE manuellt och hade full
+        kontroll över exakt vilka queries som kördes. Det kräver god kunskap om SQL-syntax
+        och man måste själv hantera saker som prepared statements för att undvika SQL-injektioner.
+    </p>
+    <p>
+        Med Doctrine ORM i Symfony arbetar man istället med PHP-objekt och attribut. Man
+        definierar sina entiteter som klasser och ORM:et sköter mappningen till databasen
+        automatiskt. Man behöver sällan skriva ren SQL utan använder istället Repository-klasser
+        med metoder som <code>findBy()</code> och <code>findOneBy()</code>.
+    </p>
+    <p>
+        En stor fördel med ORM är att koden blir mer objektorienterad och lättare att underhålla.
+        Man kan byta databas (t.ex. från SQLite till MySQL) utan att ändra applikationskoden.
+        Migrations-verktyget gör det enkelt att versionhantera databasscheman. Nackdelen är att
+        ORM kan generera ineffektiva queries vid komplexa relationer, och det finns en inlärningskurva
+        för att förstå hur ORM:et fungerar under huven. I databaskursen hade man mer direkt
+        kontroll och förståelse för vad som hände, medan ORM abstraherar bort många detaljer.
+    </p>
+
+    <p><a href="{{ path('proj_about') }}">← Tillbaka till Om</a></p>
+</div>
+{% endblock %}

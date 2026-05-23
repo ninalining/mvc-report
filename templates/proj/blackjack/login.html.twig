@@ -1,0 +1,18 @@
+{% extends "proj/base_proj.html.twig" %}
+
+{% block title %}Black Jack — Logga in{% endblock %}
+
+{% block body %}
+<div class="proj-landing">
+    <h1>Starta spelet</h1>
+    <p>Ange ditt spelarnamn för att börja spela Black Jack.</p>
+
+    <form method="post" action="{{ path('proj_blackjack_login_post') }}" class="proj-form">
+        <label for="playerName">Spelarnamn</label>
+        <input type="text" id="playerName" name="playerName" required
+               placeholder="Ditt namn..." minlength="1" maxlength="50">
+
+        <button type="submit" class="proj-btn-gold" style="width: 100%;">Börja spela</button>
+    </form>
+</div>
+{% endblock %}

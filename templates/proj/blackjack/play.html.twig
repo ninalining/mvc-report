@@ -1,0 +1,85 @@
+{% extends "proj/base_proj.html.twig" %}
+
+{% block title %}Black Jack — Spela{% endblock %}
+
+{% block body %}
+<div class="bj-info-bar">
+    <span class="player-name">{{ game.playerName }}</span>
+    <span class="balance">Saldo: {{ game.balance }} kr</span>
+</div>
+
+<div class="bj-board">
+    {# Dealer hand #}
+    <div class="bj-hand">
+        <h2>Banken ({{ game.dealer.value }})</h2>
+        <div class="cards">
+            {% for card in game.dealer.cards %}
+                <span class="{{ card.cssClass }}">{{ card.label }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    {# AI hand (if enabled) #}
+    {% if game.aiEnabled and game.ai %}
+        <div class="bj-hand" style="border-left: 3px solid #9c27b0;">
+            <h2>🤖 AI-spelare ({{ game.ai.value }})</h2>
+            <div class="cards">
+                {% for card in game.ai.cards %}
+                    <span class="{{ card.cssClass }}">{{ card.label }}</span>
+                {% endfor %}
+            </div>
+            {% if game.gameOver and game.aiResult %}
+                <div class="bj-message {% if game.aiResult == 'player_win' or game.aiResult == 'blackjack' or game.aiResult == 'dealer_bust' %}win{% elseif game.aiResult == 'push' %}push{% else %}lose{% endif %}">
+                    AI: {% if game.aiResult == 'player_win' or game.aiResult == 'dealer_bust' %}Vinner!{% elseif game.aiResult == 'blackjack' %}Black Jack!{% elseif game.aiResult == 'push' %}Lika{% elseif game.aiResult == 'player_bust' %}Tjock!{% else %}Förlorar{% endif %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {# Player hands #}
+    {% for handData in game.hands %}
+        <div class="bj-hand" style="{% if handData.active %}border: 2px solid #e2b714;{% endif %}">
+            <h2>
+                Hand {{ loop.index }}
+                ({{ handData.hand.value }})
+                — Insats: {{ handData.bet }} kr
+                {% if handData.hand.blackjack %} ♠ BLACK JACK! {% endif %}
+            </h2>
+            <div class="cards">
+                {% for card in handData.hand.cards %}
+                    <span class="{{ card.cssClass }}">{{ card.label }}</span>
+                {% endfor %}
+            </div>
+
+            {% if game.gameOver %}
+                <div class="bj-message {% if handData.result == 'player_win' or handData.result == 'blackjack' or handData.result == 'dealer_bust' %}win{% elseif handData.result == 'push' %}push{% else %}lose{% endif %}">
+                    {{ messages[loop.index0] }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+{% if not game.gameOver %}
+    <div class="bj-actions">
+        <form method="post" action="{{ path('proj_blackjack_hit') }}" style="display:inline;">
+            <button type="submit" class="proj-btn-green">Ta kort (Hit)</button>
+        </form>
+        <form method="post" action="{{ path('proj_blackjack_stand') }}" style="display:inline;">
+            <button type="submit" class="proj-btn-red">Stanna (Stand)</button>
+        </form>
+        {% for handData in game.hands %}
+            {% if handData.canSplit %}
+                <form method="post" action="{{ path('proj_blackjack_split') }}" style="display:inline;">
+                    <button type="submit" class="proj-btn-outline">Dela (Split)</button>
+                </form>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="bj-actions">
+        <a href="{{ path('proj_blackjack_bet') }}" class="proj-btn-gold">Spela igen</a>
+        <a href="{{ path('proj_blackjack_login') }}" class="proj-btn-outline">Byt spelare</a>
+    </div>
+{% endif %}
+{% endblock %}
