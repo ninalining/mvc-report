@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Black Jack{% endblock %}</title>
+    <link rel="icon" href="{{ asset('img/IMG_4451.JPG') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body class="proj-body">
+    <header class="proj-header">
+        <h1 class="proj-title">♠ Black Jack ♥</h1>
+        <p class="proj-subtitle">Ett klassiskt kortspel</p>
+    </header>
+
+    <nav class="proj-nav">
+        <ul>
+            <li class="{% if app.request.attributes.get('_route') == 'proj_index' %}active{% endif %}">
+                <a href="{{ path('proj_index') }}">Hem</a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') starts with 'proj_blackjack' %}active{% endif %}">
+                <a href="{{ path('proj_blackjack_login') }}">Spela</a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') starts with 'proj_about' %}active{% endif %}">
+                <a href="{{ path('proj_about') }}">Om</a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') == 'proj_api' %}active{% endif %}">
+                <a href="{{ path('proj_api') }}">API</a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') == 'proj_stats' %}active{% endif %}">
+                <a href="{{ path('proj_stats') }}">Statistik</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="proj-main">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="proj-flash {{ label }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="proj-footer">
+        <p>&copy; 2025 Linnéa Leewong — Black Jack Project | <a href="{{ path('home') }}" style="color: inherit;">Tillbaka till Report</a></p>
+    </footer>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
+</html>

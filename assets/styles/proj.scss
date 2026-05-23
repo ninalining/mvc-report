@@ -1,0 +1,446 @@
+@use './variables' as *;
+
+// ===== Project-specific variables =====
+$proj-bg-dark: #1a1a2e;
+$proj-bg-card: #16213e;
+$proj-bg-surface: #0f3460;
+$proj-accent-gold: #e2b714;
+$proj-accent-red: #c62828;
+$proj-accent-green: #2e7d32;
+$proj-text-light: #e8e8e8;
+$proj-text-muted: #aaa;
+$proj-font-heading: 'Playfair Display', serif;
+$proj-font-body: 'Roboto', sans-serif;
+
+// ===== Base layout =====
+.proj-body {
+    background-color: $proj-bg-dark;
+    color: $proj-text-light;
+    font-family: $proj-font-body;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+// ===== Header =====
+.proj-header {
+    background: linear-gradient(135deg, $proj-bg-card 0%, $proj-bg-surface 100%);
+    text-align: center;
+    padding: $space-lg $space-md;
+    border-bottom: 3px solid $proj-accent-gold;
+
+    .proj-title {
+        font-family: $proj-font-heading;
+        font-size: 2.5rem;
+        color: $proj-accent-gold;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .proj-subtitle {
+        color: $proj-text-muted;
+        font-size: 1rem;
+        margin-top: $space-xs;
+    }
+}
+
+// ===== Navbar =====
+.proj-nav {
+    background-color: $proj-bg-card;
+    padding: $space-sm 0;
+    border-bottom: 1px solid rgba($proj-accent-gold, 0.3);
+
+    ul {
+        display: flex;
+        gap: $space-md;
+        list-style: none;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    li a {
+        text-decoration: none;
+        color: $proj-text-light;
+        font-weight: 500;
+        padding: $space-xs $space-md;
+        border-radius: $radius-sm;
+        transition: background-color 0.3s, color 0.3s;
+
+        &:hover {
+            background-color: $proj-accent-gold;
+            color: $proj-bg-dark;
+        }
+    }
+
+    li.active a {
+        background-color: $proj-accent-gold;
+        color: $proj-bg-dark;
+        font-weight: bold;
+    }
+}
+
+// ===== Main content =====
+.proj-main {
+    flex: 1;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: $space-lg $space-md;
+}
+
+// ===== Footer =====
+.proj-footer {
+    background-color: $proj-bg-card;
+    color: $proj-text-muted;
+    text-align: center;
+    padding: $space-md;
+    border-top: 1px solid rgba($proj-accent-gold, 0.3);
+    font-size: 0.9rem;
+
+    p {
+        margin: 0;
+    }
+}
+
+// ===== Cards (playing cards) =====
+.bj-card {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 100px;
+    background: $white;
+    border-radius: $radius-md;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: $black;
+    border: 2px solid #ccc;
+    margin: 4px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+
+    &.red {
+        color: $proj-accent-red;
+        border-color: $proj-accent-red;
+    }
+
+    &.hidden-card {
+        background: linear-gradient(135deg, #1a237e 25%, #283593 75%);
+        color: transparent;
+        border-color: #1a237e;
+    }
+}
+
+// ===== Game board =====
+.bj-board {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+    margin: $space-lg 0;
+}
+
+.bj-hand {
+    background-color: $proj-bg-surface;
+    border-radius: $radius-md;
+    padding: $space-md;
+
+    h2 {
+        font-family: $proj-font-heading;
+        color: $proj-accent-gold;
+        font-size: 1.2rem;
+        margin-bottom: $space-sm;
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+}
+
+// ===== Buttons =====
+.proj-btn {
+    display: inline-block;
+    padding: $space-sm $space-lg;
+    border: none;
+    border-radius: $radius-sm;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.1s;
+
+    &:active {
+        transform: scale(0.97);
+    }
+}
+
+.proj-btn-gold {
+    @extend .proj-btn;
+    background-color: $proj-accent-gold;
+    color: $proj-bg-dark;
+
+    &:hover {
+        background-color: darken($proj-accent-gold, 10%);
+    }
+}
+
+.proj-btn-green {
+    @extend .proj-btn;
+    background-color: $proj-accent-green;
+    color: $white;
+
+    &:hover {
+        background-color: darken($proj-accent-green, 10%);
+    }
+}
+
+.proj-btn-red {
+    @extend .proj-btn;
+    background-color: $proj-accent-red;
+    color: $white;
+
+    &:hover {
+        background-color: darken($proj-accent-red, 10%);
+    }
+}
+
+.proj-btn-outline {
+    @extend .proj-btn;
+    background-color: transparent;
+    color: $proj-accent-gold;
+    border: 2px solid $proj-accent-gold;
+
+    &:hover {
+        background-color: $proj-accent-gold;
+        color: $proj-bg-dark;
+    }
+}
+
+// ===== Forms =====
+.proj-form {
+    background-color: $proj-bg-surface;
+    padding: $space-lg;
+    border-radius: $radius-md;
+    max-width: 400px;
+    margin: 0 auto;
+
+    label {
+        display: block;
+        color: $proj-accent-gold;
+        font-weight: 600;
+        margin-bottom: $space-xs;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: $space-sm;
+        border: 1px solid rgba($proj-accent-gold, 0.3);
+        border-radius: $radius-sm;
+        background-color: $proj-bg-dark;
+        color: $proj-text-light;
+        font-size: 1rem;
+        box-sizing: border-box;
+        margin-bottom: $space-md;
+
+        &:focus {
+            outline: none;
+            border-color: $proj-accent-gold;
+        }
+    }
+}
+
+// ===== Game message =====
+.bj-message {
+    text-align: center;
+    padding: $space-md;
+    border-radius: $radius-md;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: $space-md 0;
+
+    &.win {
+        background-color: rgba($proj-accent-green, 0.2);
+        color: #66bb6a;
+        border: 1px solid $proj-accent-green;
+    }
+
+    &.lose {
+        background-color: rgba($proj-accent-red, 0.2);
+        color: #ef5350;
+        border: 1px solid $proj-accent-red;
+    }
+
+    &.push {
+        background-color: rgba($proj-accent-gold, 0.2);
+        color: $proj-accent-gold;
+        border: 1px solid $proj-accent-gold;
+    }
+}
+
+// ===== Game actions =====
+.bj-actions {
+    display: flex;
+    gap: $space-md;
+    justify-content: center;
+    margin: $space-lg 0;
+}
+
+// ===== Info / balance bar =====
+.bj-info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $proj-bg-card;
+    padding: $space-sm $space-md;
+    border-radius: $radius-sm;
+    margin-bottom: $space-md;
+
+    .player-name {
+        color: $proj-accent-gold;
+        font-weight: 600;
+    }
+
+    .balance {
+        color: $proj-accent-green;
+        font-weight: 600;
+    }
+}
+
+// ===== Landing page =====
+.proj-landing {
+    text-align: center;
+    padding: $space-xl 0;
+
+    h1 {
+        font-family: $proj-font-heading;
+        font-size: 2.5rem;
+        color: $proj-accent-gold;
+        margin-bottom: $space-md;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: $proj-text-muted;
+        max-width: 600px;
+        margin: 0 auto $space-lg;
+        line-height: 1.6;
+    }
+}
+
+// ===== About page =====
+.proj-about {
+    h1 {
+        font-family: $proj-font-heading;
+        color: $proj-accent-gold;
+        margin-bottom: $space-md;
+    }
+
+    h2 {
+        color: $proj-accent-gold;
+        margin-top: $space-lg;
+    }
+
+    p {
+        line-height: 1.7;
+        color: $proj-text-light;
+    }
+
+    a {
+        color: $proj-accent-gold;
+
+        &:hover {
+            color: darken($proj-accent-gold, 10%);
+        }
+    }
+}
+
+// ===== API page =====
+.proj-api {
+    h1 {
+        font-family: $proj-font-heading;
+        color: $proj-accent-gold;
+        margin-bottom: $space-md;
+    }
+
+    .api-route {
+        background-color: $proj-bg-surface;
+        border-radius: $radius-md;
+        padding: $space-md;
+        margin-bottom: $space-md;
+        border-left: 4px solid $proj-accent-gold;
+
+        h3 {
+            color: $proj-text-light;
+            margin-bottom: $space-xs;
+
+            .method {
+                display: inline-block;
+                padding: 2px 8px;
+                border-radius: $radius-sm;
+                font-size: 0.8rem;
+                font-weight: bold;
+                margin-right: $space-xs;
+
+                &.get {
+                    background-color: $proj-accent-green;
+                    color: $white;
+                }
+
+                &.post {
+                    background-color: $proj-accent-gold;
+                    color: $proj-bg-dark;
+                }
+            }
+        }
+
+        p {
+            color: $proj-text-muted;
+            margin: $space-xs 0;
+        }
+    }
+}
+
+// ===== Flash messages =====
+.proj-flash {
+    padding: $space-sm $space-md;
+    border-radius: $radius-sm;
+    margin-bottom: $space-md;
+
+    &.success {
+        background-color: rgba($proj-accent-green, 0.2);
+        color: #66bb6a;
+        border: 1px solid $proj-accent-green;
+    }
+
+    &.error {
+        background-color: rgba($proj-accent-red, 0.2);
+        color: #ef5350;
+        border: 1px solid $proj-accent-red;
+    }
+}
+
+// ===== Responsive =====
+@media (max-width: 768px) {
+    .proj-header .proj-title {
+        font-size: 1.8rem;
+    }
+
+    .proj-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bj-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bj-info-bar {
+        flex-direction: column;
+        gap: $space-xs;
+    }
+}

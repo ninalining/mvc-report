@@ -1,0 +1,45 @@
+{% extends "proj/base_proj.html.twig" %}
+
+{% block title %}Black Jack — Om projektet{% endblock %}
+
+{% block body %}
+<div class="proj-about">
+    <h1>Om projektet</h1>
+    <p>
+        Detta är ett Black Jack-spel byggt som projektarbete i kursen MVC
+        vid Blekinge Tekniska Högskola. Spelet är utvecklat med Symfony-ramverket
+        och följer de riktiga reglerna för Black Jack.
+    </p>
+
+    <h2>Spelregler</h2>
+    <p>
+        Black Jack spelas med en standardlek om 52 kort. Målet är att få en hand
+        vars totalvärde är så nära 21 som möjligt utan att överstiga det.
+    </p>
+    <ul>
+        <li>Klädda kort (J, Q, K) = 10 poäng</li>
+        <li>Ess (A) = 1 eller 11 poäng (automatiskt bästa värdet)</li>
+        <li>Övriga kort = sitt nominella värde</li>
+        <li>Black Jack (Ess + 10-värdekort) ger 3:2 i vinst</li>
+        <li>Banken stannar på 17 eller högre</li>
+        <li>Vid lika returneras insatsen (push)</li>
+    </ul>
+
+    <h2>Funktioner</h2>
+    <ul>
+        <li>Spela 1–3 händer samtidigt mot banken</li>
+        <li>Satsningssystem med spelarkonto</li>
+        <li>Split (dela par)</li>
+        <li>AI-datorspelare</li>
+        <li>Spelstatistik och historik</li>
+    </ul>
+
+    <h2>Teknik</h2>
+    <p>
+        Projektet är byggt med PHP/Symfony, Twig-templates, Doctrine ORM
+        med SQLite-databas, och SCSS för styling. Enhetstester skrivs med PHPUnit.
+    </p>
+
+    <p><a href="{{ path('proj_about_database') }}">Läs om databasen →</a></p>
+</div>
+{% endblock %}

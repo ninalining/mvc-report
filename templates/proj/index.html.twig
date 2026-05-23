@@ -1,0 +1,15 @@
+{% extends "proj/base_proj.html.twig" %}
+
+{% block title %}Black Jack — Hem{% endblock %}
+
+{% block body %}
+<div class="proj-landing">
+    <h1>Välkommen till Black Jack</h1>
+    <p>
+        Spela det klassiska kortspelet Black Jack mot banken.
+        Välj att spela 1 till 3 händer samtidigt, satsa dina pengar
+        och försök slå bankens hand utan att gå över 21!
+    </p>
+    <a href="{{ path('proj_blackjack_login') }}" class="proj-btn-gold">Börja spela</a>
+</div>
+{% endblock %}
