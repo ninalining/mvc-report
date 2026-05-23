@@ -84,7 +84,7 @@ class BlackJack
                 }
             }
             // Deal to AI if enabled
-            if ($this->aiEnabled) {
+            if ($this->aiEnabled && $this->aiHand !== null) {
                 $card = $this->deck->drawCard();
                 if ($card !== null) {
                     $this->aiHand->addCard($card);
@@ -216,8 +216,9 @@ class BlackJack
     private function advanceToNextPlayableHand(bool $skipCurrent = false): void
     {
         $start = $skipCurrent ? $this->activeHandIndex + 1 : $this->activeHandIndex;
+        $handCount = count($this->playerHands);
 
-        for ($i = $start; $i < count($this->playerHands); $i++) {
+        for ($i = $start; $i < $handCount; $i++) {
             if ($this->results[$i] === 'playing') {
                 $this->activeHandIndex = $i;
                 return;

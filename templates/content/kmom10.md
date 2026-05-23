@@ -6,7 +6,7 @@ Jag valde att bygga ett Black Jack-kortspel som mitt projekt. Landningssidan fin
 
 Spelet följer riktiga Black Jack-regler: spelaren kan spela 1–3 händer samtidigt, ess räknas som 1 eller 11 automatiskt, klädda kort ger 10 poäng, och banken stannar på 17 eller högre. Black Jack (ess + 10-värdekort) ger 3:2 i vinst. Spelaren loggar in med sitt namn, väljer insats och antal händer, och spelar sedan mot banken med hit/stand. Sidan `/proj/about` beskriver projektet, spelregler och teknikval.
 
-Dokumentationen i `docs/` är uppdaterad med phpdoc-genererad API-dokumentation och phpmetrics-rapport. Enhetstester täcker över 90% av spelklasserna (BlackJackHand 100%, BlackJackAI 100%, Player 100%, GameRound 100%, BlackJack ~88%). README.md finns men saknar ännu Scrutinizer-badges.
+Dokumentationen i `docs/` är uppdaterad med phpdoc-genererad API-dokumentation och phpmetrics-rapport. Enhetstester täcker över 90% av spelklasserna (BlackJackHand 100%, BlackJackAI 100%, Player 100%, GameRound 100%, BlackJack ~88%). README.md innehåller klickbara Scrutinizer-badges för build, coverage och quality.
 
 ## Krav 4: JSON API
 
